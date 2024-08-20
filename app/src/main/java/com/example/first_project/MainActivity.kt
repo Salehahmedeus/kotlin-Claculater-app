@@ -3,6 +3,7 @@ package com.example.first_project
 import android.app.Activity
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,73 +32,25 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.button0.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "0"
-        }
 
-        binding.button1.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "1"
-        }
-        binding.button2.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "2"
-        }
-        binding.button3.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "3"
-        }
+        BtnNumber(binding.button0,"0")
+        BtnNumber(binding.button1,"1")
+        BtnNumber(binding.button2,"2")
+        BtnNumber(binding.button3,"3")
+        BtnNumber(binding.button4,"4")
+        BtnNumber(binding.button5,"5")
+        BtnNumber(binding.button6,"6")
+        BtnNumber(binding.button7,"7")
+        BtnNumber(binding.button8,"8")
+        BtnNumber(binding.button9,"9")
 
-        binding.button4.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "4"
-        }
-        binding.button5.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "5"
-        }
-
-        binding.button6.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "6"
-        }
-
-        binding.button7.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "7"
-        }
-
-        binding.button8.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "8"
-        }
-
-        binding.button9.setOnClickListener(){
-            binding.result.text= binding.result.text.toString() + "9"
-        }
-
-        binding.buttonPlus.setOnClickListener(){
-            number= binding.result.text.toString().toInt()
-            opr="+"
-            binding.result.text=""
-        }
+        BtnOper(binding.buttonPlus,"+")
+        BtnOper(binding.buttonMinus,"-")
+        BtnOper(binding.buttonMultipley,"*")
+        BtnOper(binding.buttonqusma,"/")
+        BtnOper(binding.buttonClear,"",isClear = true)
 
 
-        binding.buttonMinus.setOnClickListener(){
-            number= binding.result.text.toString().toInt()
-            opr="-"
-            binding.result.text=""
-        }
-
-        binding.buttonMultipley.setOnClickListener(){
-            number= binding.result.text.toString().toInt()
-            opr="*"
-            binding.result.text=""
-        }
-
-        binding.buttonqusma.setOnClickListener(){
-            number= binding.result.text.toString().toInt()
-            opr="/"
-            binding.result.text=""
-        }
-
-        binding.buttonClear.setOnClickListener(){
-            number= 0
-            opr=""
-            binding.result.text=""
-        }
 
 
         binding.buttonEqule.setOnClickListener {
@@ -114,11 +67,29 @@ class MainActivity : AppCompatActivity() {
                 "/" -> binding.result.text =
                     (number / binding.result.text.toString().toInt()).toString()
 
+            }
+        }
 
-            }}
 
 
 
+    }
+
+    fun BtnNumber(button: Button ,S:String){
+        button.setOnClickListener(){
+            binding.result.text= binding.result.text.toString() + S
+        }
+    }
+    fun BtnOper(button: Button ,S:String,isClear:Boolean = false){
+        button.setOnClickListener(){
+            if(isClear){
+                number=0
+            }else{
+                number= binding.result.text.toString().toInt()
+            }
+            opr=S
+            binding.result.text=""
+        }
     }
 
 }
